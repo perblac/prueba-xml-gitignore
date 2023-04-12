@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+    <h1>Prueba leer xml</h1>
+    <p id="salida"></p>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        leer(this);
+    }
+};
+xhttp.open("GET", "secretos.xml", true);
+xhttp.send();
+
+function leer(xml) {
+    var xmlDoc = xml.responseXML;
+    document.getElementById("salida").innerHTML =
+    'login:' + xmlDoc.getElementsByTagName("login")[0].childNodes[0].nodeValue +
+    '<br/>password:' + xmlDoc.getElementsByTagName("pass")[0].childNodes[0].nodeValue;
+}
+</script>
+  </body>
+</html>
